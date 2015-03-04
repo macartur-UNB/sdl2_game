@@ -8,6 +8,10 @@ SOURCE = window.cpp main.cpp
 all:
 	$(CFLAGS)  $(SDL_FLAGS) $(SOURCE) -o $(RUNNABLE_FILE)
 
+
+edit:
+	vim *.cpp *.h -p
+
 clean:
 	rm ${RUNNABLE_FILE} 
 
