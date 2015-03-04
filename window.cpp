@@ -1,22 +1,46 @@
+#include "window.h"
 
-#include <SDL2/SDL.h>
-#include <iostream>
+Window::Window(int posx,int posy,int width,int height,std::string name ,unsigned int flag){
+    this->posx = posx;
+    this->posy = posy;
+    this->width = width;
+    this->name = name;
+    this->height = height;
+    this->flag = flag;
+}
 
-int main(int argc , char* argv[]){
-    
-    SDL_Window *window;
-    SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("An a sdl window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,640,480,SDL_WINDOW_RESIZABLE);
-
-    if (window == NULL) {
-        std::cout<< "Can't create the window %s\n" << SDL_GetError();
-        return -1;
+int
+Window::init(){
+    if(SDL_Init(SDL_INIT_VIDEO)){
+        std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << "\n";
     }
 
-    SDL_Delay(5000);
-                                
-    SDL_DestroyWindow(window);
+    window = SDL_CreateWindow(this->name.c_str() ,this->posx,this->posy,this->width,this->height,this->flag);
 
+    if (window == NULL) {
+        std::cout<< "Can't create the window: " << SDL_GetError() << "\n" ;
+        return -1;
+    }
+    screenSurface = SDL_GetWindowSurface( this->window );
+    return 0;
+}
+
+void 
+Window::fill_rect(int red, int green , int blue){
+    SDL_FillRect( this->screenSurface, NULL, SDL_MapRGB( this->screenSurface->format,red,green,blue));
+}
+
+void
+Window::update_surface(){
+     SDL_UpdateWindowSurface( this->window );   
+}
+
+Window::~Window(){
+    SDL_DestroyWindow(this->window);
     SDL_Quit();
-    return 0;    
+}
+
+void 
+Window::delay(int value){
+    SDL_Delay(value);
 }

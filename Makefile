@@ -3,7 +3,7 @@ RUNNABLE_FILE= main
 
 CFLAGS = g++ -Wall -pedantic -ansi 
 SDL_FLAGS= -lSDL2 
-SOURCE = window.cpp
+SOURCE = window.cpp main.cpp
 
 
 
