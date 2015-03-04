@@ -20,7 +20,7 @@ string IMAGE_PATH = "images/";
 void init(Window* &window){
 	window = new Window(SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED, 640,480, "New Window",SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_SHOWN  );
 
-	if( window->init() < 0){
+	if( window->init(  SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){
 		cout << "NOT window";
 	}
 }

@@ -10,8 +10,8 @@ Window::Window(int posx,int posy,int width,int height,std::string name ,unsigned
 }
 
 int
-Window::init(){
-    if(SDL_Init(SDL_INIT_VIDEO)){
+Window::init( unsigned int flags){
+    if(SDL_Init(flags)){
         std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << "\n";
     }
 

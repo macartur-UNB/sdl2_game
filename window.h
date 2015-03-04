@@ -19,7 +19,7 @@ class Window {
     public:
         Window(int posx,int posy,int width,int height,std::string name, unsigned int flag);    
         ~Window();
-        int init();
+        int init(unsigned int flags);
 		void fill_rect(int red, int green , int blue);
 		void update_surface();
         void delay(int value);
