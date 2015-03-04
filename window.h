@@ -7,15 +7,15 @@
 
 class Window {
     private:
-        int    posx;
-        int    posy;
-        int    width;
-        int    height;
-        unsigned int  flag;
-        
+        int    		 posx;
+        int    		 posy;
+        int    		 width;
+        int    		 height;
+        unsigned int flag;
         std::string  name;
         SDL_Surface* screenSurface = NULL;
-        SDL_Window *window = NULL;
+        SDL_Window*  window = NULL;
+
     public:
         Window(int posx,int posy,int width,int height,std::string name, unsigned int flag);    
         ~Window();
@@ -23,6 +23,7 @@ class Window {
 		void fill_rect(int red, int green , int blue);
 		void update_surface();
         void delay(int value);
+		SDL_Surface* getSurface();
 };
 
 #endif

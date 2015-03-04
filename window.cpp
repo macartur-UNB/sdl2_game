@@ -44,3 +44,8 @@ void
 Window::delay(int value){
     SDL_Delay(value);
 }
+
+SDL_Surface*
+Window::getSurface(){
+	return this->screenSurface;
+}
