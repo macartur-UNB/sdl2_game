@@ -2,8 +2,8 @@
 RUNNABLE_FILE= main
 
 CFLAGS = g++ -Wall -pedantic -ansi 
-SDL_FLAGS= -lSDL2 -lSDL2_image 
-SOURCE = window.cpp main.cpp
+SDL_FLAGS= -lSDL2 -lSDL2_image -lSDL2_mixer 
+SOURCE = window.cpp main.cpp vector2D.cpp dot.cpp
 
 all:
 	$(CFLAGS)  $(SDL_FLAGS) $(SOURCE) -o $(RUNNABLE_FILE)

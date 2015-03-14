@@ -5,6 +5,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "dot.h"
+#include "vector2D.h"
+
 using namespace std;
 
 
@@ -18,7 +21,7 @@ int RIGHT= 4;
 string IMAGE_PATH = "images/";
 
 void init(Window* &window){
-	window = new Window(SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED, 640,480, "New Window",SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_SHOWN  );
+	window = new Window(SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED, 640,480, "New Window",SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_SHOWN);
 
 	if( window->init(  SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){
 		cout << "NOT window";
@@ -28,8 +31,8 @@ void init(Window* &window){
 void handle_event(int &current){
         SDL_Event e;
         while( SDL_PollEvent( &e ) != 0 ) {
-            if( e.type == SDL_QUIT )  quit = true;// EVENT to QUIT 
-            if(e.type == SDL_KEYDOWN)    
+            if( e.type == SDL_QUIT )  quit = true;// EVENT to QUIT
+            if(e.type == SDL_KEYDOWN)
             {
                 switch(e.key.keysym.sym){
                     case SDLK_UP:
@@ -49,7 +52,7 @@ void handle_event(int &current){
 
 
 void draw_surfaces(Window* &window,int &currentSurface,vector<string> & images, SDL_Rect &rcDest){
-        SDL_Surface *image_surface; 
+        SDL_Surface *image_surface;
         string image;
 
 	    window->fill_rect(0xFF,0xFF,0xFF); //DRAW BACKGROUND
@@ -58,14 +61,14 @@ void draw_surfaces(Window* &window,int &currentSurface,vector<string> & images, 
         if(!image_surface){
             cout << "Can't load the image"<<endl;
         }
-        SDL_BlitSurface(image_surface,NULL,window->getSurface(), &rcDest); 
-	    window->update_surface();  
+        SDL_BlitSurface(image_surface,NULL,window->getSurface(), &rcDest);
+	    window->update_surface();
 }
 
 
 
 int main(int argc, char** argv){
-    Window *window;
+	Window *window;
     init(window);
 
     int currentSurface=DEFAULT;
@@ -79,9 +82,8 @@ int main(int argc, char** argv){
 
     while(!quit){
         handle_event(currentSurface);
-        draw_surfaces(window,currentSurface,images,rcDest); 
+        draw_surfaces(window,currentSurface,images,rcDest);
     }
 
 	return 0;
 }
-
